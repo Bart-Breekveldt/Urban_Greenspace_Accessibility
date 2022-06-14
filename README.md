@@ -106,6 +106,10 @@ London couldn't be calculated with this algortihm. Western European cities tend 
 
 Other packages like Igraph or NetworKit, a more powerful PC or other languages like R or C++ may be used for these performance intensitve cities or regions.
 
-Other limitations include:
-- Due to grid cells, you don't get the actual population to population
+A more practical limitation is that you don't know the actual park entrances (some parks have fences where you can enter the parks only at certain spots).
+The grid entrance cost to the nearest node may be an issue, especially for low thresholds, because in the real-world people enter the road somewhere on the edge when leaving their house or other building. A solution may be to use smallest intersecting distance to the edge itself and create a node from it in the road network. But this may be complicated.
 
+Other limitations include:
+- Due to grid cells, you don't get the actual location of people, they are already somewhat aggregated. But 100m resolution is already quite detailed
+- A weird city shape like Las Vegas can result in choosing not the most optimal routes. This is tried to overcome with using buffers in OSM.
+- Incomplete data, especially for developing countries can be a problem, this is due to OSM completeness.
