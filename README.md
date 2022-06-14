@@ -4,7 +4,7 @@ The models take  population grids and calculate the shortest paths to parks to c
 
 The model calculates the shortest routes from combinations of grids and park-entry points preselected by the euclidean distance between them. The park-entry points are formed at default for nodes which are not in the park and not further than 25 metres away from the parks edge. A larger park is more attractive than a smaller one, the amount this increased attractiveness is stated as the amount of Gravity a park posesses to attract people from its surroundings. In this model the Gravity is solely determined by park size, not on other factors that can also influence park attractiveness in the real-world.
 
-The models form a blockwise structure. This means that code is divided into large blocks all of which contain a chunk of the whole code, instead of a function-based model where functions are predefined and the code is placed in one block as a whole. For time-consuming blocks, time is measured every X-iterations depending on the block. For the inserted cities, all blocks on default exectute each city one by one, otherwise it is stated at that block. The explanation structure follows these blocks for first the Modular WorldPoP-OSM Gravity Model.
+The models form a blockwise structure. This means that code is divided into large blocks all of which contain a chunk of the whole code, instead of a function-based model where functions are predefined and the code is placed in one block as a whole. For time-consuming blocks, time is measured every X-iterations depending on the block. For the inserted cities, all blocks on default exectute each city one by one, otherwise it is stated at that block. The explanation structure follows these blocks for first the **Modular WorldPoP-OSM Gravity Model.**
 
 **Block -1 packages (dependencies):**
 The dependencies are the same for both models. They can be divided in 'standard' packages, which are highly used by the Python community, geopackages for the Geo-component in the algorithm and the WorldPoP required packages. All can be intalled by pip install, except for the WorldPoP algorithm source, where the installation is stated in its GitHub.
@@ -98,6 +98,13 @@ In this block the best grid-park pairs among all grid-parkentry combinations dat
 
 **Block 10: get preferred parks for each grid:**
 Here I assume the theory of the rationally thinking and calculating person on basis of this model. He/She/It will choose the park for leisure activities with the best score. If a grid-park pair is within the threshold (the earlier subsetted dataframes per distance decay variants), the best grid-park pair is subsetted to determine the preferred park of residents of a certain grid. This is a different angle in which the most popular parks from a preference perspective can be determined which can be used to aggregate to a parks' service capacity. File paths are also created i non existent. Difference in files is that in here no aggregeation is done, thus all files are detailed per threshold, which result in a bit more files. 
+
+The Local Multiple Gravity Model differs in a slight way. Especially the first blocks.
+
+**Block 1 city boundaries**:
+Absence of loading any grids from ISO3 countries. Grid information was delivered clipped and only needs reading files. This block is thus only for extracting city boundaries.
+
+Block 2 road networks:
 
 **Limitations and other considerations**
 The performance of the script is determined by the city size, because this means more grids, the park area, which means more chance on park entry points, but most of all to the road network density. The size of the road network doesn't matter, the Dijkstra algorithm works incrementally and only considers the city pairs within a determined euclidean distance, as the pathfinding block (7) is the most computationally expensive. The Dijkstra algorithm, and even the BiDirectionalDijkstra become exponentially slower in number of route steps due to their nature, if the network is denser, more steps are needed, thus the process becomes slower. Cities that check all the boxes and mainly the box of network density like London, UK. 
