@@ -112,5 +112,5 @@ The grid entrance cost to the nearest node may be an issue, especially for low t
 
 Other limitations include:
 - Due to grid cells, you don't get the actual location of people, they are already somewhat aggregated. But 100m resolution is already quite detailed
-- A weird city shape like Las Vegas can result in choosing not the most optimal routes. This is tried to overcome with using buffers in OSM.
+- A weird city shape like Las Vegas can result in choosing not the most optimal routes. This is tried to overcome with using buffers in OSM. or you can think of taking  Clark county and exclude aggregated grids with a very low population (like below 10)
 - Incomplete data, especially for developing countries can be a problem, this is due to OSM completeness.
