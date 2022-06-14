@@ -107,6 +107,7 @@ London couldn't be calculated with this algortihm. Western European cities tend 
 Other packages like Igraph or NetworKit, a more powerful PC or other languages like R or C++ may be used for these performance intensitve cities or regions.
 
 A more practical limitation is that you don't know the actual park entrances (some parks have fences where you can enter the parks only at certain spots).
+
 The grid entrance cost to the nearest node may be an issue, especially for low thresholds, because in the real-world people enter the road somewhere on the edge when leaving their house or other building. A solution may be to use smallest intersecting distance to the edge itself and create a node from it in the road network. But this may be complicated.
 
 Other limitations include:
