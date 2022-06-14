@@ -127,7 +127,7 @@ Other limitations include:
 - A weird city shape like Las Vegas can result in choosing not the most optimal routes. This is tried to overcome with using buffers in OSM. or you can think of taking  Clark county and exclude aggregated grids with a very low population (like below 10)
 - Incomplete data, especially for developing countries can be a problem, this is due to OSM completeness.
 
-Creator: B.E. Breekveldt (Bart), Masters student Applied Data Science, faculty of Science, Utrecht University
+Creator: B.E. Breekveldt (Bart), Masters student Applied Data Science, Faculty of Science, Utrecht University
 
 1st Supervisor: S.M. Labib (Labib), Assistant Professor Human Geography & Spatial Planning, Urban Geography, Faculty of GeoSciences, Utrecht University
 
