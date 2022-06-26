@@ -68,6 +68,7 @@ The number of nearest node-iterations can be set as an assumption. If a route is
 For grids there can be multiple parkentry points that fit within the specified gravity variants' range. The best pairs per grid-park combinations are extraced. The function locals() sets a string, that includes the gravity variant, to a variable. For each gravity variant, scores within the specified threshold are subsetted. Scores decay linearly as threshold minus the cost. Population scores, hectares that can be reached and the m2 per person are calculated alongside. The adjusted score adjustes thresholds scores to the increased difference between the threshold and their area, to get a theoretical equal catchment area for all thresholds, which then can be compared. On basis of the raw score, grids are categorized in high (>= threshold score), medium (>= threshold score / 2), low (< threshold score / 2) and no (no access). This is also done for the adjusted scores. These apopulation-weighted and summarized by gravity variant and threshold. Resulting dataframes are unstacked to concatenate every additional city in a new column. Other metrics can be aggregated upwards by slightly adjusting the coce, but isn't done in here.
 
 Score results (when processed in QGIS) can look like this:
+
 ![afbeelding](https://user-images.githubusercontent.com/83957293/175823555-b46035be-44b1-4f6c-aa67-4c2cb5432b42.png)
 
 **Block 9: get UGS scores:**
