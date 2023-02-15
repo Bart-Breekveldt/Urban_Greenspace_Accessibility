@@ -1,0 +1,23 @@
+name: ssml
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.9
+  - matplotlib
+  - geopandas
+  - geojson
+  - pysal
+  - mapclassify
+  - geopy
+  - geojson
+  - rasterio
+  - contextily
+  - folium
+  - mplleaflet
+  - bokeh
+  - jupyter
+  - jupyterlab
+  - spyder
+  - seaborn
