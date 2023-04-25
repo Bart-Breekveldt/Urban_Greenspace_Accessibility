@@ -110,7 +110,7 @@ Performance of the script is determined by city size (more grids), park area (mo
 
 Scores of different thresholds are additive (scores of lower threshold should be added to get the total threshold score). High categorization got a score of 1, medium of 0.5 and low of 0.25. Scores are taken on a 100-point scale per city. For the ten cities used in research scores can be seen in graph:
 
-![afbeelding](https://user-images.githubusercontent.com/83957293/175823620-e85700b2-a5b3-401b-9611-7f808d612874.png)
+![afbeelding](https://user-images.githubusercontent.com/83957293/234412769-2bc1e8d6-5874-44d6-b826-9c9a08e39e48.png)
 
 Other limitations include the assumption of park-entry points as intersections surrounding the park, some parks are fenced, and have specific entry points, but this data is much harder to come by. Factors other than park attractiveness can be of influence to the parks' attractiveness, like the presence of water, amount of vegetation or availability of specific amenities like benches in the park. Especially for larger thresholds public transport can be faster or more convinient to reach a park. When doing driving or public transport travel time may be the better option, then the possible Euclidean combinations should be travel-time based in addition to adding travel times or travel speeds from the OSMnx module. In the networkX shortest path algorithm, travel time can be set as mode. A limtation for the modular model includes that urban greenspace is extracted from OpenStreetMap which may not be completely accurate, or you depend on local sources. Categorizing parks on basis of satellite images like NDVI may be the solution, but this is probably difficult.
 
