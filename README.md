@@ -7,6 +7,9 @@ _Visual representation the cities included_
 
 The model aims to create a reproducible and scalable algorithm, that with insertion of the cities and catchment areas can potentially calculate the UGSA on any (urban) place in the world. The aim included expanding on excisting model on more and larger cities than done until now. The aim of constructing two models is enabling to create a sensitivity analysis to compare both sources. The modular models aims to execute a most representative as possible set of cities around the world for the model being representative to that world, especially for the global south. This was restricted by data availability of local peer-review UGS data. Selected cities for research and validation were: Addis Ababa, Bologna, Cochabamba, Damascus, Detroit, Dhaka, Ghent, Indore, Kampala, Memphis, Philadelphia, Seattle, Shijiazhuang, Tel Aviv and Washington D.C. Classification is aimed to be comparable and easily interpretable between models. Inequality is measured by (Spatial) GINI coefficients (eleborated on later). 
 
+**Setting up the environment**
+
+
 **Block -1 packages (dependencies):**
 The dependencies are the same for both models. They can be divided in 'standard' packages, which are highly used by the Python community, geopackages for the Geo-component in the algorithm and the WorldPoP required packages. All can be intalled by pip install, except for the WorldPoP algorithm source, where the installation is stated in its GitHub.
 
@@ -94,11 +97,13 @@ E2SFCA also departs from the best grid-UGSentry combinations, it gets the Gaussi
 
 Score results (when processed in QGIS) can look like this:
 
-![afbeelding](https://user-images.githubusercontent.com/83957293/175823555-b46035be-44b1-4f6c-aa67-4c2cb5432b42.png)
+![afbeelding](https://user-images.githubusercontent.com/83957293/234409161-fb016d3e-6dcf-4411-8ba2-05ff12c90b2d.png)
 
 **Classification**
+Classification aims to get to a comparison between the Gravity and E2SFCA-models, one of the aims of this research. The results are classified in a way that is intuitively interpretable for both researchers and non-researchers. Scoring is divided in categories access to UGS: no, low, mediocre, sufficient, good and excellent. For the E2SFCA this is based on the WHO-guidelines of the amount of UGS per person 9m2 required and 30m2 preferred, where over 9m2 is mediocre and over 30m2 is good scoring. The Gravity scores are based on the amount of "perfect scores", which is an median sized UGS at 0m distance. This can be two median sized UGS at 500m distance when taling about a 1000m threshold. The amount of perfect scores results in its classification, also in UGS of no, low, mediocre, sufficient, good and excellent access.
 
 **Measuring inequality.**
+Inequality is often measured with the GINI-index, useful in economics, but ignores the spatial component. The spatial GINI adjusts for this and checks how much GINI is due to non-spatial heterogenity. It compares the near and far hetereogenity, the near being one-level orbit in terms of grid-cell scores of Queen's contiguity (all 8 surrounding cells seen as near) at each ego-cell before aggregating it to a spatial GINI inquality, effectively factoring out the spatial component in the GINI-calculation.
 
 **Limtations and other considerations:**
 Performance of the script is determined by city size (more grids), park area (more park-entry points), the catchment area depending on the largest threshold, but road network density as most influential. The total network size doesn't matter, only combinations within Euclidean distance are taken, computational cost increases exponentially outwards by the number of steps it takes to complete the route, which depends on road network density. 10 cities (Philadelphia, Denver, Ghent, Amsterdam, Dhaka, Dublin, Vancouver, Tel Aviv, Shanghai, Washington D.C.) took 5 hours per script run on average, about 30 mns per city. London, UK couldn't be calculated within reasonable time (average 14 hours), due to the sheer size of parks, city size and road network density, it checks all boxes. Other packages like Igraph or NetworKit, a more powerful PC (Windows 16 GB RAM i7 8750H used) or other languages like R or C++ may be used for these performance intensitve cities or regions.
