@@ -8,10 +8,10 @@ _Visual representation the cities included_
 The model aims to create a reproducible and scalable algorithm, that with insertion of the cities and catchment areas can potentially calculate the UGSA on any (urban) place in the world. The aim included expanding on excisting model on more and larger cities than done until now. The aim of constructing two models is enabling to create a sensitivity analysis to compare both sources. The modular models aims to execute a most representative as possible set of cities around the world for the model being representative to that world, especially for the global south. This was restricted by data availability of local peer-review UGS data. Selected cities for research and validation were: Addis Ababa, Bologna, Cochabamba, Damascus, Detroit, Dhaka, Ghent, Indore, Kampala, Memphis, Philadelphia, Seattle, Shijiazhuang, Tel Aviv and Washington D.C. Classification is aimed to be comparable and easily interpretable between models. Inequality is measured by (Spatial) GINI coefficients (eleborated on later). 
 
 **Setting up the environment**
-
+A guide in setting up the miniconda environment is given at the 'creating env' folder
 
 **Block -1 packages (dependencies):**
-The dependencies are the same for both models. They can be divided in 'standard' packages, which are highly used by the Python community, geopackages for the Geo-component in the algorithm and the WorldPoP required packages. All can be intalled by pip install, except for the WorldPoP algorithm source, where the installation is stated in its GitHub.
+The dependencies are the same for both models. They can be divided in 'standard' packages, which are highly used by the Python community, geopackages for the Geo-component in the algorithm and specific WorldPoP, GEE and GINI packages. All can be intalled by pip or conda install, except for the WorldPoP algorithm source, where the installation is stated in its GitHub.
 
 standard:
 - numpy
@@ -38,7 +38,7 @@ WorldPoP through Google Earth Engine
 - ee (earthengine_api)
 - geemap
 
-(Spatial)-GINI packages;
+Packages used for (Spatial) GINI calculation;
 - pysal
 - inequality.gini
 
