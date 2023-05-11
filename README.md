@@ -1,8 +1,12 @@
 ### Update version 3.0
 While assessing the models, big cities and cities with dense road networks caused some performance issues once in a while especially occururing in the Gravity model. The new model has the following benefits;
-1. Improved performance of about 70% for dense, UGS-intensive cities
+1. Improved performance of about 70 % for dense, UGS-intensive cities. For large, less UGS-intensive cities this is up to 90%. For smaller less UGS-intensive cities these improvements are lower.
 2. Improved stability of the code
-3. Using subgraphs, using the maximum reach cut-off in Euclidean terms, which
+3. Using subgraphs from every UGS entry point, using the maximum reach cut-off in Euclidean terms, considering a road network route can't be shorter dan a Euclidean version. Thus no slowing down on calculating long routes outside of the catchment threshold
+4. Moved calculation if a population centroid is already within an UGS to the population formatting section, improving performance.
+5. Moving grid-entry road node and cost calculation toe the population grid formatting section, also improving performance.
+6. Instead of a source to target calculation, a one to all from every UGS entry point is calculated. This is more efficient than calculating one, even if too much is calculated. The used Dijkstra algorithm remembers visited nodes while calculating a shortest path, which nodes can be the endpoint of a different path, which information is then already saved.
+7. Changed code on extracting possible suitible combinations, massive performance inprovement. This especially benefits cities with low to medium UGS access and with a large area, i.e. Mexico City.
 
 ### Models for categorizing the share of population that has access to urban greenspace in cities all over the world and measuring these cities' inequalities.
 
