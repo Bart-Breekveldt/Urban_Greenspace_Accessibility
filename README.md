@@ -4,72 +4,7 @@ While assessing the models, big cities and cities with dense road networks cause
 2. Improved stability of the code
 3. Using subgraphs, using the maximum reach cut-off in Euclidean terms, which
 
-### Models for categorizing the share of popean# Thresholds and cities
-os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
-
-thresholds = [300, 600, 1000] # route threshold in metres. WHO guideline speaks of access within 300m
-
-# Extract cities list
-iso = pd.read_excel('iso_countries.xlsx')
-cities = pd.read_excel('cities.xlsx')
-cities_adj = cities[cities['City'].isin(['Hanoi'])]
-cities_adj = cities_adj.reset_index()
-
-# 1. Required preprocess for information extraction
-warnings.filterwarnings('ignore')
-
-# Predifine in Excel: the (1) city name as "City" and (2) the OSM area that needs to be extracted as "OSM_area"
-# i.e. City = "Los Angeles" and OSM_area = "Los Angeles county, Orange county CA"
-files = gee_worldpop_extract(cities_adj,iso,'D:/Dumps/GEE_city_grids/')
-
-# Files are downloaded automatically to the specified path. Files are also stored in Google with a downloadlink:
-
-# 2. Information extraction
-
-# Get road networks
-road_networks = road_network(cities_adj, # Get 'all' (drive,walk,bike) network
-                              thresholds,
-                              undirected = True)
-print(' ')
-# Extract urban greenspace (UGS)
-UGS = urban_greenspace(cities_adj, 
-                       thresholds,
-                       one_UGS_buf = 25, # buffer at which UGS is seen as one
-                       min_UGS_size = 400) # WHO sees this as minimum UGS size (400m2)
-
-print(' ')
-# Clip cities from countries, format population grids
-population_grids = city_grids_format(files,
-                                     cities_adj['OSM_area'],
-                                     road_networks['nodes'],
-                                     UGS,
-                                     grid_size = 100) # aggregating upwards to i.e. 200m, 300m etc. is possible
-print('')
-# Get fake entry points (between UGS and buffer limits)
-UGS_entry = UGS_fake_entry(UGS, 
-                           road_networks['nodes'], 
-                           road_networks['graphs'],
-                           cities_adj['City'],
-                           population_grids,
-                           thresholds,
-                           UGS_entry_buf = 25, # road nodes within 25 meters are seen as fake entry points
-                           walk_radius = 500, # assume that the average person only views a UGS up to 500m in radius
-                                                # more attractive
-                           entry_point_merge = 0) # merges closeby fake UGS entry points within X meters 
-                                                    # what may be done for performance
-print('')
-suitible_enh = suitible_enhanced(UGS_entry, 
-                                 population_grids, 
-                                 road_networks['nodes'], 
-                                 cities_adj['City'], 
-                                 thresholds)
-print('')
-subgraphs = obtaining_subgraphs(road_networks['graphs'],
-                                population_grids,
-                                UGS_entry,
-                                road_networks['nodes'],
-                                cities_adj['City'],
-                                thresholds)sulation that has access to urban greenspace in cities all over the world and measuring these cities' inequalities.
+### Models for categorizing the share of population that has access to urban greenspace in cities all over the world and measuring these cities' inequalities.
 
 The model is attached to the study of "Modelling greenspace accessibility at multi-spatial contexts: a pilot study of comparing the E2SFCA- and Gravity models" presented as a conference paper on the GISRUK 2023 in Glasgow (UK, Scotland) at April 19, 2023. The conference paper can be found on Zendodo (https://zenodo.org/record/7823447). The study compares different approaches in measuring UGSA and their suitability, executing the model on 15 world cities and measuring inequalities of this access to urban greenspace. The model aims to create a reproducible and scalable workflow for comparing multiple urban centres all over the world in their access to urban greenspace (UGS) on more and more diverse cities than is done until now.  UGSA is measured at E2SFCA and Gravity models, and in the study itself comparing them. Both models don't require any manual input files, as their input is from OpenStreetMap and Google Earth Engine (GEE) which greenspace data is validated against local city data, with cities retain their relative differences while using OSM data. The code consists of installing the miniconda environment, followed by the modelling of UGSA, classification and measuring their inequalities. 
 
